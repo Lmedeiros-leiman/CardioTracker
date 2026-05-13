@@ -1,0 +1,14 @@
+src/
+  domain/
+    entities/
+    value-objects/
+    enums/
+    services/
+    repositories/
+  application/
+    use-cases/
+    dto/
+    ports/
+  infra/
+    repositories/
+    mappers/

@@ -1,0 +1,16 @@
+{
+    "name": "cardio-tracker-patient-registry",
+    "version": "0.0.1",
+    "private": true,
+    "description": "A patient registry for the Cardio Tracker fitness app monorepo.",
+    "keywords": [
+        "cardio tracker",
+        "fitness app",
+        "health app",
+        "monorepo",
+        "patient registry"
+    ],
+    "author": "Leonardo",
+    "license": "UNLICENSED",
+    "packageManager": "pnpm@10.30.1"
+}
