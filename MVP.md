@@ -4,7 +4,7 @@
 
 Construir a primeira versão como **plataforma web interna para profissionais**, não app mobile. O MVP cobre coordenação clínica básica de um programa de reabilitação cardíaca com **atendimento individual**, prontuário multiprofissional estruturado, linha do tempo unificada do paciente, agenda simples, presença/faltas e dashboard individual de evolução/adesão.
 
-Arquitetura alvo: **monólito modular** em **TypeScript/Node**, monorepo com `pnpm`, seguindo a direção já registrada no repositório: separar por módulos de negócio e evoluir framework/banco apenas quando houver necessidade concreta.
+Arquitetura alvo: **monólito modular** em **TypeScript/Node**, monorepo com `Bun`, seguindo a direção já registrada no repositório: separar por módulos de negócio e evoluir framework/banco apenas quando houver necessidade concreta.
 
 ## Implementação
 

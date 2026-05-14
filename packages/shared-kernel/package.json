@@ -1,6 +1,6 @@
 {
-  "name": "cardio-tracker-patient-registry",
-  "module": "src/index.ts",
+  "name": "shared-kernel",
+  "module": "index.ts",
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"

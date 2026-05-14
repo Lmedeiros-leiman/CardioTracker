@@ -19,10 +19,9 @@ Referências públicas para calibrar a estrutura, não para copiar:
 Comece com monorepo, mas com **um único app backend** e poucos packages.
 
 ```text
-cardiotracker/
+  cardiotracker/
   AGENTS.md
   package.json
-  pnpm-workspace.yaml
   tsconfig.base.json
 
   apps/
@@ -109,7 +108,7 @@ Cenários obrigatórios:
 Defaults escolhidos:
 - Linguagem: **TypeScript**, não JS solto
 - Runtime: **Node**
-- Package manager: **pnpm**
+- Package manager: **Bun**
 - Repo: **monorepo**
 - Estilo: **modular monolith primeiro**, não microservices
 - HTTP inicial: **Node puro**
