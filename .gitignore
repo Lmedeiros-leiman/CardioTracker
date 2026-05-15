@@ -8,6 +8,8 @@ coverage/
 
 # Bun
 .bun/
+bun.lock
+bun.lockb
 
 # Logs
 *.log

@@ -1,9 +1,10 @@
 {
-  "name": "shared-kernel",
-  "module": "index.ts",
+  "name": "@cardio-tracker/shared-kernel",
+  "version": "0.0.1",
+  "private": true,
   "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
+  "exports": {
+    ".": "./src/index.ts"
   },
   "peerDependencies": {
     "typescript": "^5"
