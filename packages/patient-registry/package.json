@@ -1,9 +1,13 @@
 {
-  "name": "cardio-tracker-patient-registry",
-  "module": "src/index.ts",
+  "name": "@cardio-tracker/patient-registry",
+  "version": "0.0.1",
+  "private": true,
   "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@cardio-tracker/shared-kernel": "workspace:*"
   },
   "peerDependencies": {
     "typescript": "^5"

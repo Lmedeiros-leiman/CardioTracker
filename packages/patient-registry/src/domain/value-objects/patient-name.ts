@@ -1,4 +1,10 @@
+interface PatientNameProps {
+    fullName: string;
+    preferredName?: string;
+}
+
 export class PatientName {
+
     private constructor(
         public readonly fullName: string,
         public readonly preferredName?: string,
@@ -7,7 +13,7 @@ export class PatientName {
     static create(input: {
         fullName: string;
         preferredName?: string;
-    }): PatientName {
+    }): PatientNameProps {
         const fullName = input.fullName.trim();
         const preferredName = input.preferredName?.trim();
 
@@ -15,13 +21,13 @@ export class PatientName {
             throw new Error("Patient full name is required");
         }
 
-        return new PatientName(
+        return {
             fullName,
-            preferredName || undefined,
-        );
+            preferredName,
+        };
     }
 
-    equals(other: PatientName): boolean {
+    equals(other: PatientNameProps): boolean {
         return (
             this.fullName === other.fullName &&
             this.preferredName === other.preferredName
