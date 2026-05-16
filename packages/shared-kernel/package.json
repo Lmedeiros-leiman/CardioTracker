@@ -6,6 +6,9 @@
   "exports": {
     ".": "./src/index.ts"
   },
+  "dependencies": {
+    "neverthrow": "^8.2.0"
+  },
   "peerDependencies": {
     "typescript": "^5"
   }
