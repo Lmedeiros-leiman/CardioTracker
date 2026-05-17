@@ -1,0 +1,16 @@
+{
+  "name": "@cardio-tracker/identity-access",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@cardio-tracker/shared-kernel": "workspace:*",
+    "neverthrow": "^8.2.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
