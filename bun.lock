@@ -5,11 +5,58 @@
     "": {
       "name": "cardio-tracker-monorepo",
     },
-    "packages/patient-registry": {
-      "name": "@cardio-tracker/patient-registry",
+    "packages/clinical-documentation": {
+      "name": "@cardio-tracker/clinical-documentation",
+      "version": "0.0.1",
+      "dependencies": {
+        "@cardio-tracker/clinical-program": "workspace:*",
+        "@cardio-tracker/shared-kernel": "workspace:*",
+        "neverthrow": "^8.2.0",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/clinical-program": {
+      "name": "@cardio-tracker/clinical-program",
       "version": "0.0.1",
       "dependencies": {
         "@cardio-tracker/shared-kernel": "workspace:*",
+        "neverthrow": "^8.2.0",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/identity-access": {
+      "name": "@cardio-tracker/identity-access",
+      "version": "0.0.1",
+      "dependencies": {
+        "@cardio-tracker/shared-kernel": "workspace:*",
+        "neverthrow": "^8.2.0",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/people-registry": {
+      "name": "@cardio-tracker/people-registry",
+      "version": "0.0.1",
+      "dependencies": {
+        "@cardio-tracker/shared-kernel": "workspace:*",
+        "neverthrow": "^8.2.0",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/scheduling": {
+      "name": "@cardio-tracker/scheduling",
+      "version": "0.0.1",
+      "dependencies": {
+        "@cardio-tracker/clinical-program": "workspace:*",
+        "@cardio-tracker/shared-kernel": "workspace:*",
+        "neverthrow": "^8.2.0",
       },
       "peerDependencies": {
         "typescript": "^5",
@@ -27,7 +74,15 @@
     },
   },
   "packages": {
-    "@cardio-tracker/patient-registry": ["@cardio-tracker/patient-registry@workspace:packages/patient-registry"],
+    "@cardio-tracker/clinical-documentation": ["@cardio-tracker/clinical-documentation@workspace:packages/clinical-documentation"],
+
+    "@cardio-tracker/clinical-program": ["@cardio-tracker/clinical-program@workspace:packages/clinical-program"],
+
+    "@cardio-tracker/identity-access": ["@cardio-tracker/identity-access@workspace:packages/identity-access"],
+
+    "@cardio-tracker/people-registry": ["@cardio-tracker/people-registry@workspace:packages/people-registry"],
+
+    "@cardio-tracker/scheduling": ["@cardio-tracker/scheduling@workspace:packages/scheduling"],
 
     "@cardio-tracker/shared-kernel": ["@cardio-tracker/shared-kernel@workspace:packages/shared-kernel"],
 
