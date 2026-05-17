@@ -1,5 +1,5 @@
 {
-  "name": "@cardio-tracker/patient-registry",
+  "name": "@cardio-tracker/people-registry",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -7,7 +7,8 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@cardio-tracker/shared-kernel": "workspace:*"
+    "@cardio-tracker/shared-kernel": "workspace:*",
+    "neverthrow": "^8.2.0"
   },
   "peerDependencies": {
     "typescript": "^5"
