@@ -27,10 +27,27 @@ type PausedEnrollmentState = {
     functionalBaseline: FunctionalBaseline;
 };
 
-type ClosedEnrollmentState = {
-    status: "completed" | "dropped" | "cancelled";
+type CompletedEnrollmentState = {
+    status: "completed";
+    eligibility: EligibilityAssessment;
+    enrolledAt: Date;
+    functionalBaseline: FunctionalBaseline;
+    discharge: Discharge;
+};
+
+type DroppedEnrollmentState = {
+    status: "dropped";
+    eligibility: EligibilityAssessment;
+    enrolledAt: Date;
+    functionalBaseline: FunctionalBaseline;
+    discharge: Discharge;
+};
+
+type CancelledEnrollmentState = {
+    status: "cancelled";
     eligibility?: EligibilityAssessment;
     enrolledAt?: Date;
+    functionalBaseline?: FunctionalBaseline;
     discharge: Discharge;
 };
 
@@ -38,7 +55,9 @@ type ProgramEnrollmentState =
     | PendingEnrollmentState
     | ActiveEnrollmentState
     | PausedEnrollmentState
-    | ClosedEnrollmentState;
+    | CompletedEnrollmentState
+    | DroppedEnrollmentState
+    | CancelledEnrollmentState;
 
 // ---
 
@@ -107,9 +126,8 @@ export class ProgramEnrollment extends Entity<ProgramEnrollmentId, ProgramEnroll
     }
 
     get functionalBaseline(): FunctionalBaseline | undefined {
-        const p = this.props;
-        if (p.status === "active" || p.status === "paused") return p.functionalBaseline;
-        return undefined;
+        if (this.props.status === "pending") return undefined;
+        return this.props.functionalBaseline;
     }
 
     get enrolledAt(): Date | undefined {
