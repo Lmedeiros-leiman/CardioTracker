@@ -5,35 +5,10 @@ import type { AttendanceStatus } from "./value-objects/attendance-status.ts";
 
 // --- State union ---
 
-type ScheduledState = {
-    status: "scheduled";
-    scheduledFor: Date;
-    professionalCpf: Cpf;
-};
-
-type PresentState = {
-    status: "present";
-    scheduledFor: Date;
-    professionalCpf: Cpf;
-    attendedAt: Date;
-};
-
-type AbsentState = {
-    status: "absent";
-    scheduledFor: Date;
-    professionalCpf: Cpf;
-    absentAt: Date;
-    justification?: string;
-};
-
-type CancelledState = {
-    status: "cancelled";
-    scheduledFor: Date;
-    professionalCpf: Cpf;
-    cancelledAt: Date;
-    cancelledBy: Cpf;
-    reason?: string;
-};
+type ScheduledState  = { status: "scheduled" };
+type PresentState    = { status: "present"; attendedAt: Date };
+type AbsentState     = { status: "absent"; absentAt: Date; justification?: string };
+type CancelledState  = { status: "cancelled"; cancelledAt: Date; cancelledBy: Cpf; reason?: string };
 
 type AttendanceState = ScheduledState | PresentState | AbsentState | CancelledState;
 
@@ -42,6 +17,8 @@ type AttendanceState = ScheduledState | PresentState | AbsentState | CancelledSt
 type BaseAttendanceProps = {
     patientCpf: Cpf;
     programEnrollmentId: ProgramEnrollmentId;
+    scheduledFor: Date;
+    professionalCpf: Cpf;
 };
 
 export type AttendanceRecordProps = BaseAttendanceProps & AttendanceState;
@@ -74,9 +51,9 @@ export class AttendanceRecord extends Entity<AttendanceRecordId, AttendanceRecor
 
     get patientCpf(): Cpf                          { return this.props.patientCpf; }
     get programEnrollmentId(): ProgramEnrollmentId { return this.props.programEnrollmentId; }
-    get status(): AttendanceStatus                 { return this.props.status; }
     get scheduledFor(): Date                       { return this.props.scheduledFor; }
     get professionalCpf(): Cpf                     { return this.props.professionalCpf; }
+    get status(): AttendanceStatus                 { return this.props.status; }
 
     get attendedAt(): Date | undefined {
         return this.props.status === "present" ? this.props.attendedAt : undefined;
