@@ -39,6 +39,18 @@
         "typescript": "^5",
       },
     },
+    "packages/outcomes": {
+      "name": "@cardio-tracker/outcomes",
+      "version": "0.0.1",
+      "dependencies": {
+        "@cardio-tracker/clinical-program": "workspace:*",
+        "@cardio-tracker/shared-kernel": "workspace:*",
+        "neverthrow": "^8.2.0",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
     "packages/people-registry": {
       "name": "@cardio-tracker/people-registry",
       "version": "0.0.1",
@@ -79,6 +91,8 @@
     "@cardio-tracker/clinical-program": ["@cardio-tracker/clinical-program@workspace:packages/clinical-program"],
 
     "@cardio-tracker/identity-access": ["@cardio-tracker/identity-access@workspace:packages/identity-access"],
+
+    "@cardio-tracker/outcomes": ["@cardio-tracker/outcomes@workspace:packages/outcomes"],
 
     "@cardio-tracker/people-registry": ["@cardio-tracker/people-registry@workspace:packages/people-registry"],
 
