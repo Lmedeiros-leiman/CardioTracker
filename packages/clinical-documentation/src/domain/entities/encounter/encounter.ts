@@ -18,6 +18,7 @@ export type EncounterProps = {
     vitalSigns?: VitalSigns;
 };
 
+// occurredAt is provided by the caller (infra layer) — it records the actual clinical timestamp, not when this object is constructed.
 export type CreateEncounterProps = EncounterProps;
 
 export class Encounter extends Entity<EncounterId, EncounterProps> {
