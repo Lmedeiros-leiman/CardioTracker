@@ -1,30 +1,24 @@
 import { err, ok, type Result } from "neverthrow";
 
-export type ActiveClinicalRestrictionProps = {
-    status: "active";
+type BaseClinicalRestrictionProps = {
     description: string;
     startedAt: Date;
 };
 
-export type InactiveClinicalRestrictionProps = {
-    status: "inactive";
-    description: string;
-    startedAt: Date;
-    endedAt: Date;
-    endReason?: string;
-};
+type ActiveClinicalRestrictionState   = { status: "active" };
+type InactiveClinicalRestrictionState = { status: "inactive"; endedAt: Date; endReason?: string };
 
-export type ClinicalRestrictionProps =
-    | ActiveClinicalRestrictionProps
-    | InactiveClinicalRestrictionProps;
+type ClinicalRestrictionState = ActiveClinicalRestrictionState | InactiveClinicalRestrictionState;
+
+export type ClinicalRestrictionProps = BaseClinicalRestrictionProps & ClinicalRestrictionState;
 
 export type ClinicalRestrictionError = { kind: "empty_description" };
 
 export class ClinicalRestriction {
-    readonly #state: ClinicalRestrictionProps;
+    readonly #props: ClinicalRestrictionProps;
 
-    private constructor(state: ClinicalRestrictionProps) {
-        this.#state = state;
+    private constructor(props: ClinicalRestrictionProps) {
+        this.#props = props;
     }
 
     static create(
@@ -40,14 +34,14 @@ export class ClinicalRestriction {
         return new ClinicalRestriction(props);
     }
 
-    get status(): "active" | "inactive"  { return this.#state.status; }
-    get active(): boolean                { return this.#state.status === "active"; }
-    get description(): string            { return this.#state.description; }
-    get startedAt(): Date                { return this.#state.startedAt; }
+    get status(): "active" | "inactive"  { return this.#props.status; }
+    get active(): boolean                { return this.#props.status === "active"; }
+    get description(): string            { return this.#props.description; }
+    get startedAt(): Date                { return this.#props.startedAt; }
     get endedAt(): Date | undefined {
-        return this.#state.status === "inactive" ? this.#state.endedAt : undefined;
+        return this.#props.status === "inactive" ? this.#props.endedAt : undefined;
     }
     get endReason(): string | undefined {
-        return this.#state.status === "inactive" ? this.#state.endReason : undefined;
+        return this.#props.status === "inactive" ? this.#props.endReason : undefined;
     }
 }

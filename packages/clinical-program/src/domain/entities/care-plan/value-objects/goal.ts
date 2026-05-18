@@ -1,49 +1,27 @@
 import { err, ok, type Result } from "neverthrow";
 
-export type ActiveGoalProps = {
-    status: "active";
+type BaseGoalProps = {
     description: string;
     targetDate?: Date;
 };
 
-export type AchievedGoalProps = {
-    status: "achieved";
-    description: string;
-    targetDate?: Date;
-    achievedAt: Date;
-};
+type ActiveGoalState    = { status: "active" };
+type AchievedGoalState  = { status: "achieved"; achievedAt: Date };
+type SuspendedGoalState = { status: "suspended"; suspendedAt: Date; reason?: string };
+type CancelledGoalState = { status: "cancelled"; cancelledAt: Date; reason?: string };
 
-export type SuspendedGoalProps = {
-    status: "suspended";
-    description: string;
-    targetDate?: Date;
-    suspendedAt: Date;
-    reason?: string;
-};
+type GoalState = ActiveGoalState | AchievedGoalState | SuspendedGoalState | CancelledGoalState;
 
-export type CancelledGoalProps = {
-    status: "cancelled";
-    description: string;
-    targetDate?: Date;
-    cancelledAt: Date;
-    reason?: string;
-};
-
-export type GoalProps =
-    | ActiveGoalProps
-    | AchievedGoalProps
-    | SuspendedGoalProps
-    | CancelledGoalProps;
-
-export type GoalStatus = GoalProps["status"];
+export type GoalProps   = BaseGoalProps & GoalState;
+export type GoalStatus  = GoalState["status"];
 
 export type GoalError = { kind: "empty_description" };
 
 export class Goal {
-    readonly #state: GoalProps;
+    readonly #props: GoalProps;
 
-    private constructor(state: GoalProps) {
-        this.#state = state;
+    private constructor(props: GoalProps) {
+        this.#props = props;
     }
 
     static create(description: string, targetDate?: Date): Result<Goal, GoalError> {
@@ -56,22 +34,22 @@ export class Goal {
         return new Goal(props);
     }
 
-    get status(): GoalStatus             { return this.#state.status; }
-    get description(): string            { return this.#state.description; }
-    get targetDate(): Date | undefined   { return this.#state.targetDate; }
+    get status(): GoalStatus           { return this.#props.status; }
+    get description(): string          { return this.#props.description; }
+    get targetDate(): Date | undefined { return this.#props.targetDate; }
 
     get achievedAt(): Date | undefined {
-        return this.#state.status === "achieved" ? this.#state.achievedAt : undefined;
+        return this.#props.status === "achieved" ? this.#props.achievedAt : undefined;
     }
     get suspendedAt(): Date | undefined {
-        return this.#state.status === "suspended" ? this.#state.suspendedAt : undefined;
+        return this.#props.status === "suspended" ? this.#props.suspendedAt : undefined;
     }
     get cancelledAt(): Date | undefined {
-        return this.#state.status === "cancelled" ? this.#state.cancelledAt : undefined;
+        return this.#props.status === "cancelled" ? this.#props.cancelledAt : undefined;
     }
     get reason(): string | undefined {
-        return (this.#state.status === "suspended" || this.#state.status === "cancelled")
-            ? this.#state.reason
+        return (this.#props.status === "suspended" || this.#props.status === "cancelled")
+            ? this.#props.reason
             : undefined;
     }
 }
